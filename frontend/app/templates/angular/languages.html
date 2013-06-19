@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="large-12">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th width="200">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="language in languages">
+          <td>{{language.id}}</td>
+          <td>{{language.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <form ng-submit="create()">
+      <label>New lang: </label>
+      <input ng-model="newLang" />
+  </div>
+</div>

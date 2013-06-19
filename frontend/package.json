@@ -1,0 +1,18 @@
+{
+  "name": "Hello-Lineman",
+  "title": "A example of lineman with Rails",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "Jesus Rodriguez",
+    "company": "Foxandxss"
+  },
+  "dependencies": {
+    "grunt-angular-templates": "0.3.1",
+    "grunt-ngmin": "~0.0.2"
+  },
+  "engines": {
+    "node": "~>0.10.5",
+    "npm": "~>1.2.18"
+  }
+}
