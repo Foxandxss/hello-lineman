@@ -7,7 +7,6 @@ module Api
 		end
 
 		def create
-			sleep 2
 			@lang = Language.create(params[:language])
 			render json: @lang, root: false
 		end
