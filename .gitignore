@@ -13,3 +13,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+.rvmrc
+Capfile
+config/deploy.rb
+config/thin.yml
