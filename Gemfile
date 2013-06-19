@@ -8,3 +8,6 @@ group :development do
   gem 'capistrano'
   gem 'rvm-capistrano'
 end
+group :production do
+  gem 'thin'
+end
