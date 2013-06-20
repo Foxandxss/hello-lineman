@@ -1,7 +1,7 @@
 An example of Rails + Lineman + Frontend
 ========================================
 
-We always developed integrating our frontend inside Rails' assets. It worked but we lose all the flexibility of having an independent frontend application.
+We used to always develope integrating our frontend inside Rails' assets. It worked but we lost all the flexibility of having an independent frontend application.
 
 So what we need to do is use a tool like [Lineman](http://www.linemanjs.com) to build our frontend without any knowledge of what kind of backend we are going to use.
 
@@ -9,9 +9,9 @@ If you want to learn more about using `Lineman` I highly recommend you to see [D
 
 ### Getting started
 
-So you want to make an app and you know that is going to use a framework like `Angular`, `Backbone` or `Ember` but so far no idea about what backend. Not a problem!
+So you want to make an app and you know that is going to use a framework like `Angular`, `Backbone` or `Ember` but you have so far no idea about what backend. Not a problem!
 
-Lets create a directory for our application:
+Let's create a directory for our application:
 
 ```
 $ mkdir hello-lineman
@@ -44,33 +44,33 @@ And that is it! You can now work with your frontend application as much as you w
 
 ### Rails integration
 
-So you decided to use `Rails` as a backend. There are several ways to integrate them, and here is mine:
+So you decided to use `Rails` as a backend. There are several ways to integrate it, and here is mine:
 
 ```
 [hello-lineman]$ rails new .
 ```
 
-That will create a rails app in the current directory, so the *frontend* folder is inside the rails application.
+That will create a Rails app in the current directory, so the *frontend* folder is inside the Rails application.
 
 They don't know each other and they don't care.
 
-We do it this way because it will be a lot easier to deploy (More on this later).
+We do it this way because it will be a lot easier to deploy (more on this later).
 
-Now is the time to build our great *REST Api*.
+Now it is the time to build our great *REST Api*.
 
 Then in the lineman application, you configure the proxy server (as the lineman documentation says) and you're good to go.
 
 ### Rails configuration
 
-Since our frontend and our backend are completely separated, we need to configure rails to use the frontend properly.
+Since our frontend and our backend are completely separated, we need to configure Rails to use the frontend properly.
 
 The idea is that the frontend should be 100% portable, so if tomorrow we decide that we don't want Rails anymore, we can dump the frontend into another backend without **any** change at all.
 
-First, since we are not using the *CSRF meta tag* that Rails provides (Remember, our index.html shouldn't contain any code of the backend) we need a way to ask Rails for a *CSRF* token and then use it.
+First, since we are not using the *CSRF meta tag* that Rails provides (remember, our index.html shouldn't contain any code of the backend) we need a way to ask Rails for a *CSRF* token and then use it.
 
-If you saw David Mosher's video, you see that what he does is request the *CSRF* token to the server when the application start and then inject it into Angular.
+If you saw David Mosher's video, you see that what he does is to request the *CSRF* token from the server when the application starts and then inject it into Angular.
 
-That is easy to with Rails, something along the lines:
+That is easy to do with Rails, something along the lines:
 
 ```ruby
 class CsrfController < ApplicationController
@@ -80,15 +80,15 @@ class CsrfController < ApplicationController
 end
 ```
 
-Haven't tried but it should work :)
+Haven't tried but it should work :).
 
-Idealy, this is the way to go but I thought that having to do an extra request and the need of manually inject the *csrf_token* in the request is not ideal so I decided to break the rules and gives the backend some knowledge of the frontend.
+Ideally, this is the way to go but I thought that having to do an extra request and the need of manually injecting the *csrf_token* in the request is not ideal so I decided to break the rules and gives the backend some knowledge of the frontend.
 
 Reading through Angular's [$http](http://docs.angularjs.org/api/ng.$http) documentation I saw this:
 
 > The $http service reads a token from a cookie called XSRF-TOKEN and sets it as the HTTP header X-XSRF-TOKEN. Since only JavaScript that runs on your domain could read the cookie, your server can be assured that the XHR came from JavaScript running on your domain.
 
-That means that we can have *Rails* creating a cookie with the *CSRF token* and *Angular* will automagically read it and set the *HTTP Header*. How?
+That means that we can have *Rails* create a cookie with the *CSRF token* and *Angular* will automagically read it and set the *HTTP Header*. How?
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -108,9 +108,9 @@ class ApplicationController < ActionController::Base
 end
 ```
 
-With that, when we make our first *GET* the cookie will be set and angular will save the *CSRF token* into a header. The advantage is that you don't need to write any code in angular.
+With that, when we make our first *GET*, the cookie will be set and Angular will save the *CSRF token* into a header. The advantage is that you don't need to write any code in Angular.
 
-Another thing you maybe want is *HTML 5 mode*. That is trickier to use at the moment because the fake server which came with lineman doesn't support it yet (Check [this](https://github.com/testdouble/lineman/pull/60)).
+Another thing you maybe want is *HTML 5 mode*. That is trickier to use at the moment because the fake server which came with Lineman doesn't support it yet (Check [this](https://github.com/testdouble/lineman/pull/60)).
 
 Anyways, if you want to deploy and have it working (Since Rails supports it) you need a couple of things.
 
