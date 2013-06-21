@@ -110,9 +110,7 @@ end
 
 With that, when we make our first *GET*, the cookie will be set and Angular will save the *CSRF token* into a header. The advantage is that you don't need to write any code in Angular.
 
-Another thing you maybe want is *HTML 5 mode*. That is trickier to use at the moment because the fake server which came with Lineman doesn't support it yet (Check [this](https://github.com/testdouble/lineman/pull/60)).
-
-Anyways, if you want to deploy and have it working (Since Rails supports it) you need a couple of things.
+Another thing you maybe want is *HTML 5 mode*. Lineman supports it (Look [here](https://github.com/testdouble/lineman#html5-pushstate-simulation)), but we need to do some workarounds to get it working in Rails.
 
 First, you need to serve your `index.html` using a Rails controller, like this:
 

@@ -8,10 +8,12 @@
 module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application', {
 
   server: {
+    pushState: true,
     apiProxy: {
       enabled: true,
       host: 'localhost',
-      port: 3000
+      port: 3000,
+      prefix: 'api'
     }
   },
 
