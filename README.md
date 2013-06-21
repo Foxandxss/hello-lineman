@@ -158,12 +158,12 @@ Then:
 set :application, "app-name"
 set :use_sudo, false
 set :scm, :git
-set :repository,  "git@github.com:Foxandxss/#{application}.git"
+set :repository,  "git@github.com:User/#{application}.git"
 
 server "example.com", :app, :web, :db, primary: true
 
 set :user, "www-data"
-set :deploy_to, "/srv/http/ruby/thin/#{application}"
+set :deploy_to, "/your/server/www-root/path/#{application}"
 set :deploy_via, :remote_cache
 
 default_run_options[:pty] = true
@@ -222,12 +222,12 @@ namespace :deploy do
 end
 ```
 
-Well, I have a task which upload my local *thin.yml* which is not in the repository (for obvious reasons). Since is not in the repository, I have it locally in my app.
-It also upload the databaes config and my .rvmrc.
+Well, I have a task which uploads my local *thin.yml* which is not in the repository (for obvious reasons). Since it is not in the repository, I have it locally in my app.
+It also uploads the databaes config and my .rvmrc.
 
 I make some symlinks and we are ready to go (with the Rails app).
 
-For the frontend, I have a task which install our app dependences and build the app. Then it moves the result into the /public folder and clean the lineman app. And then, it make some symlinks to make the Rails app aware of how the statics files are.
+For the frontend, I have a task which installs our app dependences and builds the app. Then it moves the result into the /public folder and cleans the Lineman app. And then, it creates some symlinks to make the Rails app aware of how the statics files are.
 
 You can use this like this:
 
@@ -252,4 +252,4 @@ If you only want to update the frontend:
 $ cap deploy:frontend:update
 ```
 
-And that is it
+And that is it.
