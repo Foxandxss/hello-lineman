@@ -1,7 +1,7 @@
 An example of Rails + Lineman + Frontend
 ========================================
 
-We used to always develope integrating our frontend inside Rails' assets. It worked but we lost all the flexibility of having an independent frontend application.
+We used to develop integrating our frontend inside Rails' assets. It worked but we lost all the flexibility of having an independent frontend application.
 
 So what we need to do is use a tool like [Lineman](http://www.linemanjs.com) to build our frontend without any knowledge of what kind of backend we are going to use.
 
